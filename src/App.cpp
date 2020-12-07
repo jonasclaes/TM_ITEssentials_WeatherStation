@@ -17,6 +17,8 @@ bool App::setup()
     Serial.println("WeatherStation");
     Serial.println("Initializing...");
 
+    Serial.println();
+
     if (!bmp.setup()) {
         Serial.println("Could not setup BMP280 sensor.");
         return false;
@@ -25,12 +27,25 @@ bool App::setup()
         bmp.printInfo();
     }
 
+    Serial.println();
+
     if (!lightSensor.setup()) {
         Serial.println("Could not setup BH1750 sensor.");
         return false;
     } else {
         Serial.println("Setup BH1750 sensor.");
     }
+
+    Serial.println();
+
+    if (!wireless.connect()) {
+        Serial.println("Could not setup WiFi.");
+        return false;
+    } else {
+        Serial.println("Setup WiFi.");
+    }
+
+    Serial.println();
 
     Serial.println("Initialized!");
 

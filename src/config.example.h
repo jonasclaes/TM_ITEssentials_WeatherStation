@@ -1,0 +1,7 @@
+#ifndef WS_CONFIG_H
+#define WS_CONFIG_H
+
+#define WS_WIFI_SSID "YOUR_SSID"
+#define WS_WIFI_PASSWORD "YOUR_PASSWORD"
+
+#endif
