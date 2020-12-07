@@ -13,3 +13,6 @@ The project consists out of 3 main parts.
 - BH1750
 
   This is a Adafruit BH1750 breakout board which contains a light sensor. This is being controlled through the I2C bus.
+
+The following picture is made by me to show the setup that we're talking about here.
+![ESP32-BMP280-BH1750](assets/images/IMG_Overview.JPG)
