@@ -1,0 +1,6 @@
+Device
+	- I²C Address: 0x23
+	- BH1750
+Device
+	- I²C Address: 0x77
+	- BMP280
