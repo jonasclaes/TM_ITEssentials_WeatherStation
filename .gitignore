@@ -5,3 +5,6 @@
 .vscode/ipch
 
 src/config.h
+
+CMakeListsPrivate.txt
+cmake-build-*/
