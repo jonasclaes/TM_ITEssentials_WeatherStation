@@ -2,13 +2,9 @@
 
 using namespace WeatherStation;
 
-App::App()
-{
-}
+App::App() = default;
     
-App::~App()
-{
-}
+App::~App() = default;
 
 bool App::setup()
 {
@@ -47,28 +43,48 @@ bool App::setup()
 
     Serial.println();
 
+    if (!mqtt.setup()) {
+        Serial.println("Could not setup MQTT.");
+        return false;
+    } else {
+        Serial.println("Setup MQTT.");
+    }
+
+    Serial.println();
+
     Serial.println("Initialized!");
 
     return true;
 }
 
 void App::loop() {
-    // Process sensors
-    bmp.loop();
-    lightSensor.loop();
+    mqtt.loop();
 
-    Serial.print("Temperature: ");
-    Serial.print(bmp.getTemperature());
-    Serial.println(" °C");
+    if (loops == 200) {
+        // Process sensors
+        bmp.loop();
+        lightSensor.loop();
 
-    Serial.print("Pressure: ");
-    Serial.print(bmp.getPressure());
-    Serial.println(" hPa");
+        Serial.print("Temperature: ");
+        Serial.print(bmp.getTemperature());
+        Serial.println(" °C");
 
-    Serial.print("Light level: ");
-    Serial.print(lightSensor.getLightLevel());
-    Serial.println(" lx");
+        Serial.print("Pressure: ");
+        Serial.print(bmp.getPressure());
+        Serial.println(" hPa");
 
-    Serial.println();
-    delay(2000);
+        Serial.print("Light level: ");
+        Serial.print(lightSensor.getLightLevel());
+        Serial.println(" lx");
+
+        Serial.println("Sending data..");
+        mqtt.sendData(bmp.getTemperature(), bmp.getPressure(), lightSensor.getLightLevel());
+        Serial.println("Sent data.");
+
+        Serial.println();
+
+        loops = 0;
+    }
+    loops++;
+    delay(100);
 }
