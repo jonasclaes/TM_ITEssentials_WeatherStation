@@ -60,31 +60,27 @@ bool App::setup()
 void App::loop() {
     mqtt.loop();
 
-    if (loops == 200) {
-        // Process sensors
-        bmp.loop();
-        lightSensor.loop();
+    // Process sensors
+    bmp.loop();
+    lightSensor.loop();
 
-        Serial.print("Temperature: ");
-        Serial.print(bmp.getTemperature());
-        Serial.println(" °C");
+    Serial.print("Temperature: ");
+    Serial.print(bmp.getTemperature());
+    Serial.println(" °C");
 
-        Serial.print("Pressure: ");
-        Serial.print(bmp.getPressure());
-        Serial.println(" hPa");
+    Serial.print("Pressure: ");
+    Serial.print(bmp.getPressure());
+    Serial.println(" hPa");
 
-        Serial.print("Light level: ");
-        Serial.print(lightSensor.getLightLevel());
-        Serial.println(" lx");
+    Serial.print("Light level: ");
+    Serial.print(lightSensor.getLightLevel());
+    Serial.println(" lx");
 
-        Serial.println("Sending data..");
-        mqtt.sendData(bmp.getTemperature(), bmp.getPressure(), lightSensor.getLightLevel());
-        Serial.println("Sent data.");
+    Serial.println("Sending data..");
+    mqtt.sendData(bmp.getTemperature(), bmp.getPressure(), lightSensor.getLightLevel());
+    Serial.println("Sent data.");
 
-        Serial.println();
+    Serial.println();
 
-        loops = 0;
-    }
-    loops++;
-    delay(100);
+    ESP.deepSleep(30 * 60 * FACTOR_US_TO_S);
 }

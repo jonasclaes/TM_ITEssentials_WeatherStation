@@ -6,6 +6,8 @@
 #include "wireless/WS_Wireless.h"
 #include "mqtt/WS_MQTT.h"
 
+#define FACTOR_US_TO_S 1000000
+
 namespace WeatherStation {
     class App
     {
