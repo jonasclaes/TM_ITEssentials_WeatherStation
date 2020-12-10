@@ -8,11 +8,11 @@
 WeatherStation::App app;
 
 void setup() {
-  if (!app.setup()) {
-    ESP.restart();
-  }
+    if (!app.setup()) {
+        ESP.restart();
+    }
 }
 
 void loop() {
-  app.loop();
+    app.loop();
 }
