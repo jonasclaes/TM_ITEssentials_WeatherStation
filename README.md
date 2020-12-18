@@ -16,3 +16,10 @@ The project consists out of 3 main parts.
 
 The following picture is made by me to show the setup that we're talking about here.
 ![ESP32-BMP280-BH1750](assets/images/IMG_Overview.JPG)
+
+Since we're using multiple components, we have to design a wiring diagram. I have done this using Fritzing.
+![Wiring-Diagram](docs/schematic.png)
+
+I have also created a breadboard layout for reference.
+![Breadboard-Diagram](docs/breadboard_layout.png)
+
